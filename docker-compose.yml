@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  extrator_dados:
+    build: .
+    container_name: meuspipeline
+    # Mantém o contêiner ligado aguardando seus comandos
+    tty: true
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
