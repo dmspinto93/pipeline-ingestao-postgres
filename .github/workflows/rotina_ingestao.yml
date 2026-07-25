@@ -1,0 +1,26 @@
+name: Pipeline de Ingestao PostgreSQL
+
+# Quando essa rotina vai rodar?
+on:
+  # 1. Automaticamente, todo dia às 03:00 da manhã (horário UTC)
+  schedule:
+    - cron: '0 3 * * *'
+  
+  # 2. Manualmente (cria um botão "Run workflow" no site do GitHub para você testar)
+  workflow_dispatch:
+
+jobs:
+  run-etl-docker:
+    name: Executar ETL no Docker
+    runs-on: ubuntu-latest # A máquina virtual que o GitHub vai emprestar
+
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Iniciar o banco de dados e rodar o script Python
+        # O GitHub Actions já vem com o Docker e Docker Compose instalados!
+        # O comando abaixo sobe os serviços e a flag --abort-on-container-exit 
+        # faz com que a máquina desligue assim que o script Python terminar.
+        run: |
+          docker-compose up --build --abort-on-container-exit
