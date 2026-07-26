@@ -23,4 +23,4 @@ jobs:
         # O comando abaixo sobe os serviços e a flag --abort-on-container-exit 
         # faz com que a máquina desligue assim que o script Python terminar.
         run: |
-          docker-compose up --build --abort-on-container-exit
+          docker compose up --build --abort-on-container-exit
