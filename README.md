@@ -17,5 +17,5 @@ Para rodar este projeto localmente, você precisará ter o Python instalado e ac
 
 **1. Clone o repositório**
 ```bash
-git clone [https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git](https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git)
+git clone [https://github.com/dmspinto93/pipeline-ingestao-postgres.git](https://github.com/dmspinto93/pipeline-ingestao-postgres.git)
 cd NOME_DO_REPOSITORIO
