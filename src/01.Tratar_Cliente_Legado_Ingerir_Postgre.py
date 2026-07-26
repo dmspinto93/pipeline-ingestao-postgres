@@ -1,6 +1,16 @@
 import pandas as pd
 import psycopg2
 import numpy as np
+from dotenv import load_dotenv
+
+# 0. Carrega as informações do arquivo .env para a memória do Python
+load_dotenv()
+
+# 0.1. Busca os dados de conexão de forma segura
+db_host = os.getenv("DB_HOST")
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 # 1. LÊ O ARQUIVO CSV
 # Usando o pandas para carregar os dados
@@ -33,7 +43,12 @@ df_clientes['dt_cadastro_iso'] = pd.to_datetime(df_clientes['dt_cadastro'], form
 
 # 3. CONECTA NO BANCO E PREPARA INSERÇÃO
 # Abre a conexão com o seu Postgres 16
-conexao = psycopg2.connect(host="host.docker.internal", database="legado", user="postgres", password="Dsl@0194")
+conexao = psycopg2.connect(
+    host=db_host,
+    database=db_name,
+    user=db_user,
+    password=db_password
+)
 cursor = conexao.cursor()
 
 # A query SQL para a tabela principal

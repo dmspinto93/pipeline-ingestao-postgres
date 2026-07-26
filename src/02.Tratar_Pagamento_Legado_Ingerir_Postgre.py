@@ -1,6 +1,16 @@
 import pandas as pd
 import psycopg2
 import numpy as np
+from dotenv import load_dotenv
+
+# 0. Carrega as informações do arquivo .env para a memória do Python
+load_dotenv()
+
+# 0.1. Busca os dados de conexão de forma segura
+db_host = os.getenv("DB_HOST")
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 # 1. LÊ O ARQUIVO CSV
 file_path = '/app/data/pagamentos_legado.csv'
@@ -47,7 +57,12 @@ df_pagamentos['motivo_falha'] = df_pagamentos['motivo_falha'].str.strip('; ')
 
 
 # 3. CONEXÃO E INSERÇÃO
-conexao = psycopg2.connect(host="host.docker.internal", database="legado", user="postgres", password="Dsl@0194")
+conexao = psycopg2.connect(
+    host=db_host,
+    database=db_name,
+    user=db_user,
+    password=db_password
+)
 cursor = conexao.cursor()
 
 query_sql = """
