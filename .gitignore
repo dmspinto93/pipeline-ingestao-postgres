@@ -1,0 +1,11 @@
+# Ignora arquivos de ambiente (sua senha segura)
+.env
+
+# Ignora caches do Python
+__pycache__/
+*.pyc
+
+# Ignora os CSVs gerados localmente nos seus testes,
+# mas mantém a pasta data no repositório
+data/*.csv
+!data/.gitkeep
